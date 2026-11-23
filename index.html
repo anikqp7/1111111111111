@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asrafias — a tiny lisp</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>asrafias<span class="dot">.</span></h1>
+    <span class="sub">a tiny lisp — prefix notation · code as data</span>
+    <div class="controls">
+      <select id="samples" title="sample programs">
+        <option value="">— sample —</option>
+        <option value="hello">hello</option>
+        <option value="fact">factorial</option>
+        <option value="fib">fibonacci</option>
+        <option value="lists">rupantor / beche / milao</option>
+        <option value="closures">closures</option>
+        <option value="primes">primes</option>
+      </select>
+      <button class="btn-ghost" id="clearBtn">Clear</button>
+      <button class="btn-run" id="runBtn">Eval ▶</button>
+    </div>
+  </header>
+
+  <div class="grid">
+
+   <section class="panel">
+     <div class="panel-head"><span class="file">program.asr</span></div>
+     <div class="editor-area">
+       <div class="gutter"><div class="gutter-inner" id="gutterInner"></div></div>
+       <div class="code-stack">
+         <pre class="editor-hl" id="highlight"></pre>
+         <textarea id="code" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+       </div>
+     </div>
+   </section>
+
+   <section class="panel">
+     <div class="tabs" id="tabs">
+       <button class="tab active" data-tab="output">Output<span class="count" id="cntOutput">0</span></button>
+       <button class="tab" data-tab="forms">Forms<span class="count" id="cntForms">0</span></button>
+       <button class="tab" data-tab="errors">Errors<span class="count" id="cntErrors">0</span></button>
+     </div>
+     <div class="tab-body">
+       <div class="tab-pane active" id="pane-output"><div class="empty-hint">press Eval to run.</div></div>
+       <div class="tab-pane" id="pane-forms"><div class="empty-hint">parsed s-expressions appear here.</div></div>
+       <div class="tab-pane" id="pane-errors"><div class="empty-hint">no errors.</div></div>
+     </div>
+   </section>
+
+  </div>
+
+  <div class="status">
+    <span>forms: <b id="statForms">0</b></span>
+    <span>lines: <b id="statLines">0</b></span>
+    <span>time: <b id="statTime">0</b>ms</span>
+    <span id="statResult">ready</span>
+  </div>
+
+  <div class="ref">
+    <h3>language reference</h3>
+    <p>Prefix notation: the operator comes <em>first</em>. Everything is an expression. Only <code>mittha</code> and <code>nil</code> are falsy — <code>0</code> and <code>""</code> are truthy. Comments run to end of line with <code>;</code>.</p>
+    <table>
+      <tr><td>(jog 1 2 3)</td><td>arithmetic, prefix (also biyog gun vag vagshesh)</td></tr>
+      <tr><td>(deo x 5)</td><td>bind a value</td></tr>
+      <tr><td>(deokaj f [x] ...)</td><td>define a function</td></tr>
+      <tr><td>(kaj [x] ...)</td><td>anonymous function (lambda)</td></tr>
+      <tr><td>(jodi test then else)</td><td>conditional</td></tr>
+      <tr><td>(dhoro [x 1 y 2] ...)</td><td>local bindings</td></tr>
+      <tr><td>(kor a b c)</td><td>sequence; returns the last value</td></tr>
+      <tr><td>(bolo x)  or  'x</td><td>data literal (unevaluated)</td></tr>
+      <tr><td>(rupantor f lst)</td><td>apply f to each element</td></tr>
+      <tr><td>(beche p lst)</td><td>keep elements where p is truthy</td></tr>
+      <tr><td>(milao f init lst)</td><td>fold left</td></tr>
+      <tr><td>nil  sotyo  mittha</td><td>literals (nil = the empty list)</td></tr>
+    </table>
+  </div>
+
+  <footer>asrafias — a compiler design study</footer>
+
+</div>
+
+<script src="asrafias.js" defer></script>
+</body>
+</html>
